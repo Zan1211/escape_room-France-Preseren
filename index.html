@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room: Zdravljica - Pustolovščina čaka!</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: url('https://source.unsplash.com/1600x900/?mystery') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 30px 0;
+        }
+button {
+    padding: 15px 30px;  /* Povečanje velikosti gumba */
+    font-size: 18px;     /* Povečanje velikosti pisave */
+    background-color: #2a4d7c;  /* Modra barva gumba */
+    color: white;        /* Bela barva besedila na gumbu */
+    border: none;        /* Odstranitev okvirja okrog gumba */
+    border-radius: 8px;  /* Zaobljeni robovi gumba */
+    cursor: pointer;     /* Spreminjanje kazalca na roko pri miški */
+    transition: background-color 0.3s ease;  /* Gladek prehod pri premiku miške */
+}
+
+button:hover {
+    background-color: #1d3b61;  /* Temnejša modra, ko je gumb izbran */
+}
+
+
+        h1 {
+            font-size: 3em;
+            color: #FFD700;
+            text-shadow: 3px 3px 5px rgba(0,0,0,0.7);
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        
+
+        .info-section {
+            background-color: rgba(0, 0, 0, 0.6);
+            margin: 30px auto;
+            width: 80%;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .info-section h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .info-section p {
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #C0C0C0;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Title Section -->
+    <header>
+        <h1>Escape Room: France Prešeren</h1>
+        <p class="tagline">Pustolovščina, ki vas popelje v preteklost! Ste pripravljeni na izziv?</p>
+        
+    </header>
+
+    <!-- Information Section -->
+    <div class="info-section">
+        <h2>O igri</h2>
+        <p>Dobrodošli v Escape Room Zdravljica! Vaša naloga je prečkati ovire, rešiti uganke in odkriti skrito geslo, ki vam bo omogočilo pobeg iz zgodovine.</p>
+        <p>Ste pripravljeni na izziv? Igra temelji na slovenski narodni pesmi "Zdravljica" Franceta Prešerna, kjer boste morali odkriti manjkajoče besede in razvozlati uganke, ter odgovoriti na vprašanja,  da odkrijete zaklad zgodovine.</p>
+        <p>Vsak odgovor, ki ga podate, vas bo pripeljal bližje k končnemu cilju. Na koncu boste odkrili ključ, ki vam bo omogočil beg iz zgodovine!</p>
+    </div>
+
+    
+
+
+<button onclick="window.location.href='uganke_o_presernu.html'">1. Začni z vprašanji o Prešernu </button>
+<button onclick="window.location.href='uganka_zdravljica.html'">2. Nadaljuj z vstavljanjem besed v pesem Zdravljica</button>
+<button onclick="window.location.href='escape_room.html'">3. Končaj z escape room</button>
+
+
+</body>
+</html>                            

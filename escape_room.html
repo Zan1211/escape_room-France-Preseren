@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soba Pobega - Prešernova Pisarna</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('images/room-background.jpg'); /* Slika sobe */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            position: absolute;
+            top: 5%;
+            color: white;
+            font-size: 36px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .item {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .item:hover {
+            transform: scale(1.1);
+        }
+
+        /* Portret Franceta Prešerna (premaknjeno in povečano) */
+        .portrait {
+            width: 240px;
+            height: 280px;
+            top: 10%;
+            right: 8%;
+            background-image: url('images/portrait.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Dnevnik Franceta Prešerna (premaknjen na drugo stran in povečano) */
+        .diary {
+            width: 100px;
+            height: 130px;
+            top: 55%;
+            left: 73%; /* Premaknjeno na desno stran */
+            background-image: url('images/diary.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Plašč Franceta Prešerna (premaknjen, zmanjšan in bolj desno) */
+        .coat {
+            width: 200px;  /* Zmanjšano za pol */
+            height: 290px; /* Zmanjšano za pol */
+            top: 25%;      /* Premaknjeno višje */
+            left: 35%;     /* Premaknjeno bolj desno proti sredini */
+            background-image: url('images/coat.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Slika fige (dodana slika) */
+        .fig {
+            width: 30px;
+            height: 30px;
+            top: 83%;
+            left: 65%;
+            background-image: url('images/fig.png'); /* Slika fige */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Modal za namige */
+        #riddleModal {
+            display: none;
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            padding: 30px;
+            border: 2px solid #aaa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            text-align: center;
+        }
+
+        #riddleModal p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Kvadratek za končno geslo */
+        .password-container {
+            position: absolute;
+            bottom: 5%;
+            left: 30%;  /* Premaknjeno bolj levo */
+            transform: translateX(-50%);
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #aaa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            display: none; /* Skrito dokler niso vsi predmeti kliknjeni */
+        }
+
+        .password-container input {
+            padding: 8px;
+            font-size: 14px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        /* Končna stran */
+        .end-screen {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 40px;
+            border: 2px solid #aaa;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 60%;
+        }
+
+        .end-screen h2 {
+            font-size: 36px;
+            color: green;
+        }
+
+        .end-screen p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prešernova Pisarna - Soba Pobega</h1>
+
+        <!-- Predmeti v sobi -->
+        <div class="portrait item" onclick="showHint('portrait')"></div>
+        <div class="diary item" onclick="showHint('diary')"></div>
+        <div class="coat item" onclick="showHint('coat')"></div>
+        <div class="fig item" onclick="showHint('fig')"></div>
+
+        <!-- Modal za namige -->
+        <div id="riddleModal">
+            <p id="riddleText"></p>
+            <button onclick="closeModal()">Zapri</button>
+        </div>
+
+        <div id="finalResult" class="result"></div>
+
+        <!-- Kvadratek za končno geslo (skrit do vseh klikov) -->
+        <div class="password-container" id="passwordContainer">
+            <p>Namig: Kako so otroci klicali Franceta Prešerna?</p>
+            <input type="text" id="password" placeholder="Vnesite končno geslo" />
+            <button onclick="checkPassword()">Preveri geslo</button>
+        </div>
+
+        <!-- Končna stran -->
+        <div class="end-screen" id="endScreen">
+            <h2>Čestitamo!</h2>
+            <p>Uspešno ste rešili Sobo Pobega in pobegnili iz Prešernove pisarne!</p>
+            <p>Hvala, da ste sodelovali v igri!</p>
+        </div>
+    </div>
+
+    <script>
+        const hints = {
+            portrait: "Francetu Prešernu se je nekaj zakotalilo pod stol, le kaj je bilo to?",
+            diary: "Rad osrečujem otroke s tem, da jim podarjam dobrote.",
+            coat: "V žepu je prazna vrečka, le kaj bi lahko bilo v njej?",
+            fig: "Sem dobrota, s katero France Prešeren osrečuje otroke."
+        };
+
+        let clickedItems = {
+            portrait: false,
+            diary: false,
+            coat: false,
+            fig: false
+        };
+
+        let currentItem = null;
+
+        // Funkcija za prikaz namiga ob kliku na predmet
+        function showHint(item) {
+            clickedItems[item] = true; // Označi predmet kot kliknjen
+            currentItem = item;
+            document.getElementById('riddleText').innerText = hints[item];
+            document.getElementById('riddleModal').style.display = 'block';
+
+            // Preveri, če so vsi predmeti kliknjeni
+            if (Object.values(clickedItems).every(status => status === true)) {
+                document.getElementById('passwordContainer').style.display = 'block'; // Pokaži kvadratek za geslo
+            }
+        }
+
+        // Funkcija za zapiranje modalnega okna
+        function closeModal() {
+            document.getElementById('riddleModal').style.display = 'none';
+        }
+
+        // Preverjanje končnega gesla
+        function checkPassword() {
+            const password = document.getElementById('password').value.trim().toLowerCase();
+            if (password === "doktor fig") {
+                document.getElementById('finalResult').innerText = "Čestitamo! Uspešno ste pobegnili!";
+                // Pokaži končno stran
+                document.getElementById('endScreen').style.display = 'block';
+                document.getElementById('passwordContainer').style.display = 'none'; // Skrij polje za geslo
+            } else {
+                alert('Napačno geslo, poskusi znova.');
+            }
+        }
+    </script>
+</body>
+</html>   

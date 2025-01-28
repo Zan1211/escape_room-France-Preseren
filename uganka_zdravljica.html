@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uganka: Zdravljica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2a4d7c;
+        }
+        .uganka {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .uganka p {
+            font-size: 18px;
+        }
+        input[type="text"] {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #2a4d7c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1d3b61;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .kitica {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Uganka: Zdravljica</h1>
+
+    <!-- Uganka: manjkajoče besede v Zdravljici -->
+    <div class="uganka">
+        <p><strong>Uganka 1:</strong> Vpiši manjkajoče besede v besedilu pesmi "Zdravljica".</p>
+        
+        <div class="kitica">
+            <p>1. kitica: <br> 
+            Prijatli! Odrodile so trte vince nam sladkó, <br>
+            ki nam oživlja <input type="text" id="answer1">, <br>
+            razjásni in oko, ki utopi, <br>
+            vse skrbi, v potrtih prsih <input type="text" id="answer2"> budi!
+            </p>
+        </div>
+        
+        <div class="kitica">
+            <p>2. kitica: <br> 
+            Komú narpred veselo <input type="text" id="answer3">, bratje! <br>
+            čmo zapét'! Bog našo nam <input type="text" id="answer4">, <br>
+            Bog živi ves slovenski <input type="text" id="answer5">, <br>
+            brate vse, kar nas je, <br>
+            sinov sloveče <input type="text" id="answer6">! <br>
+            </p>
+        </div>
+
+        <div class="kitica">
+            <p>3. kitica: <br> 
+            V sovražnike 'z oblakov <input type="text" id="answer7"> <br>
+            naj naš'ga treši <input type="text" id="answer8">; <br>
+            prost, ko je bil očakov, <br>
+            naprej naj bo Slovencov <input type="text" id="answer9">; <br>
+            </p>
+        </div>
+
+        <div class="kitica">
+            <p>4. kitica: <br> 
+            Edinost, sreča, <input type="text" id="answer10"> <br>
+            k nam naj nazaj se vrnejo; <br>
+            otrok, kar ima <input type="text" id="answer11">, <br>
+            vsi naj si v róke sežejo, <br>
+            de oblast in z njo čast, ko préd, spet naša boste last! <br>
+            </p>
+        </div>
+
+        <div class="kitica">
+            <p>5. kitica: <br> 
+            Bog žívi vas Slovenke, prelepe, žlahtne <input type="text" id="answer12">; <br>
+            ni take je mladenke, ko naše je krvi dekle; <br>
+            naj <input type="text" id="answer13"> zarod nov  <br>
+            iz vas bo strah sovražnikov! <br>
+            </p>
+        </div>
+
+        <div class="kitica">
+            <p>6. kitica: <br> 
+            Mladenči, zdaj se pije zdravljica vaša, vi naš up; <br>
+            ljubezni <input type="text" id="answer14"> noben naj vam ne usmŕti strup; <br>
+            ker zdaj vas kakor nas, jo sŕčno <input type="text" id="answer15"> kliče čas! <br>
+            </p>
+        </div>
+
+        <div class="kitica">
+            <p>7. kitica: <br> 
+            Živé naj vsi naródi, ki hrepené dočakat dan, <br>
+            ko, koder <input type="text" id="answer16"> hodi, prepir iz sveta bo pregnan, <br>
+            ko rojak prost bo vsak, ne vrag, le sosed bo <input type="text" id="answer17">! <br>
+            </p>
+        </div>
+
+        <div class="kitica">
+            <p>8. kitica: <br> 
+            Nazadnje še, <input type="text" id="answer18">, kozarce zase vzdignimo, <br>
+            ki smo zato se zbratli, ker dobro v srcu mislimo; <br>
+            dokaj dni naj živí vsak, kar nas <input type="text" id="answer19"> je ljudi! <br>
+            </p>
+        </div>
+
+        <button onclick="checkAnswers()">Preveri odgovore</button>
+        <p id="result" class="result"></p>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            var correctAnswers = {
+                answer1: "žile",
+                answer2: "up",
+                answer3: "zdravljico",
+                answer4: "deželo",
+                answer5: "svet",
+                answer6: "matere",
+                answer7: "rodu",
+                answer8: "grom",
+                answer9: "dom",
+                answer10: "sprava",
+                answer11: "Slava",
+                answer12: "rožice",
+                answer13: "sinov",
+                answer14: "domačije",
+                answer15: "branit",
+                answer16: "sonce",
+                answer17: "mejak",
+                answer18: "prijatlji",
+                answer19: "dobrih",
+            };
+            
+            var correctCount = 0;
+            var resultElement = document.getElementById('result');
+            
+            // Preverjanje vseh odgovorov
+            for (var key in correctAnswers) {
+                var userAnswer = document.getElementById(key).value.trim();
+                if (userAnswer === correctAnswers[key]) {
+                    correctCount++;
+                }
+            }
+
+            if (correctCount === 19) {
+                resultElement.textContent = "Pravilen odgovor!";
+                resultElement.style.color = "green";
+            } else {
+                resultElement.textContent = "Napačen odgovor, poskusi znova. Ugotovil si " + correctCount + " od 19 odgovorov pravilno.";
+                resultElement.style.color = "red";
+            }
+        }
+
+    </script>
+
+
+</body>
+</html>

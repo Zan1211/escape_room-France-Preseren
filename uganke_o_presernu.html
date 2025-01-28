@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uganke o Francetu Prešernu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2a4d7c;
+        }
+        .uganka {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .uganka p {
+            font-size: 18px;
+        }
+        input[type="text"] {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #2a4d7c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1d3b61;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vprašanja o Francetu Prešernu</h1>
+
+    <div class="uganka">
+        <p><strong>Uganka 1:</strong> Kateri slovenski pesnik je napisal pesem "Zdravljica"?</p>
+        <input type="text" id="answer1" placeholder="Vpiši odgovor">
+        <button onclick="checkAnswer(1, 'France Prešeren')">Preveri odgovor</button>
+        <p id="result1" class="result"></p>
+    </div>
+    <!-- Nova Uganka 2: Kdaj je umrl? -->
+    <div class="uganka">
+        <p><strong>Uganka 2:</strong> Kdaj je umrl France Prešeren?</p>
+        <input type="text" id="answer2" placeholder="Vpiši odgovor">
+        <button onclick="checkAnswer(2, '8.2.1849')">Preveri odgovor</button>
+        <p id="result2" class="result"></p>
+    </div>
+     <!-- Nova Uganka 3: Kje se je rodil? -->
+    <div class="uganka">
+        <p><strong>Uganka 3:</strong> Kje se je rodil France Prešeren?</p>
+        <input type="text" id="answer3" placeholder="Vpiši odgovor">
+        <button onclick="checkAnswer(3, 'Vrba')">Preveri odgovor</button>
+        <p id="result3" class="result"></p>
+    
+<!-- Nova Uganka 4: S kom je bil zelo dober prijatelj? -->
+    <div class="uganka">
+        <p><strong>Uganka 4:</strong> Kdo je bil njegov zelo dober prijatelj?</p>
+        <input type="text" id="answer4" placeholder="Vpiši odgovor">
+        <button onclick="checkAnswer(4, 'Matija Čop')">Preveri odgovor</button>
+        <p id="result4" class="result"></p>
+    </div>
+  
+    </div>
+    <div class="uganka">
+        <p><strong>Uganka 5:</strong> Kako se imenuje Prešernova pesem, ki je posvečena Juliji Primic? (Vpiši ime pesmi.)</p>
+        <input type="text" id="answer5" placeholder="Vpiši odgovor">
+        <button onclick="checkAnswer(5, 'Sonetni venec')">Preveri odgovor</button>
+        <p id="result5" class="result"></p>
+    </div>
+
+    <div class="uganka">
+        <p><strong>Uganka 6:</strong> V kateri pesmi Prešeren slavi slovensko narodnost? (Vpiši ime pesmi.)</p>
+        <input type="text" id="answer6" placeholder="Vpiši odgovor">
+        <button onclick="checkAnswer(6, 'Zdravljica')">Preveri odgovor</button>
+        <p id="result6" class="result"></p>
+    </div>
+
+    
+
+    <script>
+        function checkAnswer(ugankaId, correctAnswer) {
+            var userAnswer = document.getElementById('answer' + ugankaId).value.trim();
+            var resultElement = document.getElementById('result' + ugankaId);
+
+            // Poglej, ali je uporabnikov odgovor enak pravilnemu odgovoru (ignoring case)
+            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                resultElement.textContent = "Pravilen odgovor!";
+                resultElement.style.color = "green";
+            } else {
+                resultElement.textContent = "Napačen odgovor, poskusi znova.";
+                resultElement.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
